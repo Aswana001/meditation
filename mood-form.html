@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Check - Calm</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>How Are You Feeling Today?</h2>
+        <form id="moodForm">
+            <label for="mood">Select your current mood:</label>
+            <select id="mood" name="mood">
+                <option value="stressed">Stressed</option>
+                <option value="anxious">Anxious</option>
+                <option value="sad">Sad</option>
+                <option value="happy">Happy</option>
+                <option value="neutral">Neutral</option>
+            </select>
+
+            <label for="energy">How much energy do you have?</label>
+            <input type="range" id="energy" name="energy" min="1" max="10">
+
+            <label for="comment">Anything on your mind?</label>
+            <textarea id="comment" name="comment" rows="3" placeholder="Write your thoughts..."></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("moodForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            let mood = document.getElementById("mood").value;
+            
+            // Redirect based on the selected mood
+            if (mood === "stressed" || mood === "anxious") {
+                window.location.href = "meditation.html"; // Redirect to meditation page
+            } else if (mood === "sad") {
+                window.location.href = "music.html"; // Redirect to music page
+            } else {
+                window.location.href = "quotes.html"; // Redirect to quotes page
+            }
+        });
+    </script>
+</body>
+</html>

@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drum Kit</title>
+    <title>Calm - Meditation Website</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 </head>
 <body>
-    <h1 id="drum">Let's Have Some Fun</h1>
-    <div class="set">
-        <button class="w drum">Focus</button>
-        <button class="a drum">Peace</button>
-        <button class="s drum">Love</button>
-        <button class="d drum">Positive</button>
-        <button class="j drum">Heal</button>
-        <button class="k drum">Present</button>
-        <button class="l drum">Soul</button>
+    <!-- Home Page -->
+    <div class="home-container">
+        <div class="content">
+            <h1 class="heading">Calm</h1>
+            <p class="quote">"Inhale the future, exhale the past."</p>
+            <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="start-button">Start Your Journey</a>
+        </div>
     </div>
 
-    <script src="index.js"></script>
+    <!-- JavaScript to handle the navigation logic -->
+    <script>
+        document.querySelector('.start-button').addEventListener('click', function() {
+            window.location.href = 'YOUR_GOOGLE_FORM_LINK';
+        });
+    </script>
 </body>
-<footer>
-  
-</footer>
 </html>
