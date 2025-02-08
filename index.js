@@ -1,79 +1,70 @@
-
 var numberOfDrum = document.querySelectorAll(".drum").length;
-for(var i=0;i<numberOfDrum;i++)
-{
-    document.querySelectorAll("button")[i].addEventListener("click",handleclick);
+var audioObjects = {}; // To store the audio objects
 
-   
-    function handleclick(){
-
-        var buttonInnerHTML = this.innerHTML;
-        sound(buttonInnerHTML);
-        buttonani(buttonInnerHTML);
-    }
+for (var i = 0; i < numberOfDrum; i++) {
+    document.querySelectorAll("button")[i].addEventListener("click", handleclick);
 }
 
-document.addEventListener("keypress",handleclick2);
-function handleclick2(){
-    sound(event.key); 
+document.addEventListener("keypress", handleclick2);
+
+function handleclick() {
+    var buttonInnerHTML = this.innerHTML;
+    sound(buttonInnerHTML);
+    buttonani(buttonInnerHTML);
+}
+
+function handleclick2() {
+    sound(event.key);
     buttonani(event.key);
 }
 
-function sound(key){
+function sound(key) {
+    var audio;
 
-    switch (key){
-        case "Focus": 
-            var audio1 = new Audio("beautiful-relaxing-piano-for-videos-239494.mp3");
-            audio1.play();   
-            break;
-        
-        case "Love":
-            var audio2= new Audio("la-valse-de-lune-beautiful-piano-piece-200131.mp3");
-            audio2.play();   
-            break;
+    // Check if the audio object already exists for the key (to manage play/pause)
+    if (audioObjects[key]) {
+        audio = audioObjects[key];
+    } else {
+        // If not, create a new audio object and store it
+        audio = new Audio(getAudioFileName(key));
+        audioObjects[key] = audio;
+    }
 
-        case "Peace":
-            var audio3= new Audio("rain-and-relaxing-beat-tell-me-why-216570.mp3");
-            audio3.play();   
-            break;
-
-         case "Soul": 
-            var audio4 = new Audio("fur-elise-beethoven-216331.mp3");
-            audio4.play();   
-            break;
-
-        case "Present": 
-            var audio5 = new Audio("relaxing-instrumental-music-backsound-11-215393.mp3");
-            audio5.play();   
-            break;
-
-        case "Positive": 
-            var audio6 = new Audio("relaxing-instrumental-music-backsound-11-215393.mp3");
-            audio6.play();   
-            break;
-
-         case "Heal": 
-            var audio7 = new Audio("whip-afro-dancehall-music-110235.mp3");
-            audio7.play();   
-            break;
-          
-          
-        default:console.log(); 
+    // If the audio is already playing, pause it; otherwise, play it
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+        audio.currentTime = 0; // Reset audio to the beginning
     }
 }
 
- 
-function buttonani(currentkey){
-   var acbutton =  document.querySelector("."+currentkey);
-   acbutton.classList.add("pressed");
-   setTimeout(function(){
-    acbutton.classList.remove("pressed");
-   },100);
+function getAudioFileName(key) {
+    // This function returns the correct audio file based on the key
+    switch (key) {
+        case "Focus":
+            return "beautiful-relaxing-piano-for-videos-239494.mp3";
+        case "Love":
+            return "la-valse-de-lune-beautiful-piano-piece-200131.mp3";
+        case "Peace":
+            return "rain-and-relaxing-beat-tell-me-why-216570.mp3";
+        case "Soul":
+            return "fur-elise-beethoven-216331.mp3";
+        case "Present":
+            return "relaxing-instrumental-music-backsound-11-215393.mp3";
+        case "Positive":
+            return "relaxing-instrumental-music-backsound-11-215393.mp3";
+        case "Heal":
+            return "whip-afro-dancehall-music-110235.mp3";
+        default:
+            return ""; // In case the key doesn't match
+    }
 }
 
-
-/*
-var audio= new Audio("tom-1.mp3");
-audio.play();
-*/
-
+function buttonani(currentkey) {
+    var acbutton = document.querySelector("." + currentkey);
+    acbutton.classList.add("pressed");
+    setTimeout(function () {
+        acbutton.classList.remove("pressed");
+    }, 100);
+}
